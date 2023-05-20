@@ -1,0 +1,47 @@
+#! /bin/bash
+#$ -N smallDR
+#$ -cwd
+#$ -j y
+#$ -S /bin/bash
+#$ -V
+##  pido la cola gpu.q
+#$ -q gpu@compute-6-4.local
+## pido una placa
+#$ -l gpu=1
+#$ -l memoria_a_usar=1G
+#
+# Load gpu drivers and conda
+module load miniconda
+
+source activate tensorflow
+
+# Execute the script
+hostname
+
+# MNIST
+# python robustness.py -ds MNIST -m 1 -a deepfool -eta 0.01 -ns 2000 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+# python robustness.py -ds MNIST -m 1 -a FGSM -eps 0.062 -ns 2000 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+# python robustness.py -ds MNIST -m 1 -a CW2 -kap 0.1 -cte 0.011 -cteupd 0.011 -ns 2000 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+
+# CIFAR10
+# python robustness.py -ds CIFAR10 -m 1 -a deepfool -eta 0.45 -ns 2000 -d stoGauNet -xs 0.0 -xe 0.18 -dx 0.02 -ys 0.0 -ye 0.18 -dy 0.02
+# python robustness.py -ds CIFAR10 -m 1 -a FGSM -eps 0.005 -ns 2000 -d stoGauNet -xs 0.0 -xe 0.18 -dx 0.02 -ys 0.0 -ye 0.18 -dy 0.02
+# python robustness.py -ds CIFAR10 -m 1 -a CW2 -kap 0.1 -cte 0.0032 -cteupd 0.0032 -ns 2000 -d stoGauNet -xs 0.0 -xe 0.18 -dx 0.02 -ys 0.0 -ye 0.18 -dy 0.02
+
+# DR
+# python robustness.py -ds DR -m 1 -a deepfool -eta 5.0 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+# python robustness.py -ds DR -m 1 -a FGSM -eps 0.001 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+# python robustness.py -ds DR -m 1 -a CW2 -kap 0.1 -cte 0.0005 -cteupd 0.0005 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+
+# smallDR
+## python robustness.py -ds smallDR -m 1 -a deepfool -eta 0.5 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a deepfool -eta 1.0 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a deepfool -eta 5.0 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a FGSM -eps 0.001 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+## python robustness.py -ds smallDR -m 1 -a FGSM -eps 0.005 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+## python robustness.py -ds smallDR -m 1 -a FGSM -eps 0.01 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+## python robustness.py -ds smallDR -m 1 -a FGSM -eps 0.05 -ns 200 -d stoGauNet -xs 0.0 -xe 9.0 -dx 1.0 -ys 0.0 -ye 9.0 -dy 1.0
+## python robustness.py -ds smallDR -m 1 -a CW2 -kap 0.1 -cte 0.05 -cteupd 0.05 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a CW2 -kap 0.1 -cte 0.1 -cteupd 0.1 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a CW2 -kap 0.1 -cte 0.5 -cteupd 0.5 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2
+## python robustness.py -ds smallDR -m 1 -a CW2 -kap 0.1 -cte 1.0 -cteupd 1.0 -ns 200 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 1.8 -dy 0.2

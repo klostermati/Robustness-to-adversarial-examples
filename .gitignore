@@ -1,0 +1,10 @@
+Datasets/
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+gen_data/
+graphs/
+.DS_Store
+*.h5
+best_model*.txt
+Codes/venv/*
