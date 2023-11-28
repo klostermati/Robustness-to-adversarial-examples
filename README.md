@@ -1,8 +1,8 @@
-# Robustness of feed forward neural networks against adversarial examples
+# Robustness of feed-forward neural networks against adversarial examples
 
-This repository contains the codes developed and used in my master's thesis in engineering. These codes were used to generate all the results. However, it is important to mention that the code has not been extensively refined, so the setup to run certain parts may fail due to dependencies. I apologize for any inconvenience this may cause.
+This repository contains the codes developed and used in my master's thesis in engineering. The codes were employed to generate all the results. If you want to review the thesis associated with this repository, you can find it at this [link](https://ricabib.cab.cnea.gov.ar/1197/1/1Kloster.pdf). Please note that the only available version is in Spanish. However, it's important to mention that the code has not been extensively refined, so the setup to run certain parts may fail due to dependencies. I apologize for any inconvenience this may cause.
 
-This repository has essentially the files shown below. Some of the files and folders are not in the repository because they are datasets that must be downloadaded or must be generated with `robustness.py` which will be explained later.
+In this repository, you'll find the essential files listed below. Not all files and folders are included here, as some are datasets that need to be downloaded or generated using `robustness.py`, which will be explained later.
 
 ``` text
 .
@@ -108,7 +108,7 @@ python robustness.py -ds <DATASET> -m <MODEL> -a <ATTACK> -<ATTACK_PRMTR_NAME> <
 | `Y_STEP`           | float value                    |
 | `NOISE_ITER`       | integer value (100 by default) |
 
-As an example, lets run the dataset `MNIST` training it with model `1`, i.e. the network that is in _Codes/models/MNIST-model_1.py_. Then, attack the correct classified images with the `deepfool` attack, with an `eta` parameter of 0.1. Finally, use the detection method Stochastic Gaussian Network (`stoGauNet`) with the some specified grid.
+As an example, let's run the dataset `MNIST` training it with model `1`, i.e. the network that is in _Codes/models/MNIST-model_1.py_. Then, attack the correct classified images with the `deepfool` attack, with an `eta` parameter of 0.1. Finally, use the detection method Stochastic Gaussian Network (`stoGauNet`) with the some specified grid.
 
 ``` bash
 python robustness.py -ds MNIST -m 1 -a deepfool -eta 0.1 -d stoGauNet -xs 0.0 -xe 1.8 -dx 0.2 -ys 0.0 -ye 0.18 -dy 0.02
